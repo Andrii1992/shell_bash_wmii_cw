@@ -1,0 +1,73 @@
+Polecenia powłoki bash cd..
+
+cp kopiowanie plików
+cp [opcje] źródło cel
+
+Katalog /etc zawiera pliki konfiguracyjne
+Do katalogu bieżącego skopiować z katalogu /etc plik passwd
+
+cp /etc/passwd .
+
+Do katalogu bieżącego skopiować z katalogu /etc plik group
+cp /etc/group .
+
+oglądanie zawartości pliku
+cat nazwaPliku
+more nazwaPliku
+less nazwaPliku
+
+plik passwd - lista kont założonych na serwerze (kont niedomenowych)
+nazwaKonta:x:UID:GID:opis:katalog domowy:powłoka
+
+x -kiedyś tu było hasło
+UID identyfikator użytkownika
+GID identyfikator grupy podstawowej
+
+plik group - lista grup założonych na serwerze
+qnazwaGrupy:x:GID:[lista uzytkowników]
+
+przydatne polecenia: id, groups
+
+plik shadow - plik z hasłami
+cp /etc/shadow .
+
+robimy kopię pliku passwd z katalogu . i nazywamy ją KopiaPasswd
+
+cp passwd KopiaPasswd
+cp passwd ./KopiaPasswd
+
+chmod - zmiana uprawnień do pliku
+
+do pliku passwd grupie dodać prawo "w"
+chmod g+w passwd
+do pliku group grupie zabra? prawo "r"
+chmod g-r group
+do pliku KopiaPasswd grupie dodać prawo "w", pozostałym zabrać prawa "rx"
+chmod g+w,o-r KopiaPasswd
+
+można podać wzorzec bitowy nowych praw
+rw- r-- ---
+110 100 000
+
+6 (4+2)
+4
+0
+chmod 640 passwd
+
+do pliku group nada? uprawnienia: rwxr-x--x
+111 1-1 --1
+7   5   1
+chmod 751 group 
+do pliku group nadać uprawnienia: rw-rwxr-x
+rw- rwx r-x
+110 111 101
+
+edytor tekstu: mcedit
+utworzy? plik ~/toja zawieraj?cy wasze imię i nazwisko
+
+polecenie umask
+ustawia domyślne uprawnienia dla tworzonych plików
+domyślne uprawnienia maja być: rw-rw----
+
+
+mv zmiana nazwy, przesunięcie pliku
