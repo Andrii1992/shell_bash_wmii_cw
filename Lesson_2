@@ -1,0 +1,33 @@
+vin katalog tam polecenia
+
+bin progarme otpowiedzialne za polecenia powloki
+
+ wyswetlanie wyjatkowych plikow
+ls -l /bin/l*
+ls -l /bin/*l
+ls -l /bin/[xyz]*
+ls -l /bin/???
+ls -l /bin/*[0-9]*
+
+
+type ls 
+type pwd   czy jest wbudowany?
+
+cp [nazwa co chce skopijawac] [i do kad]
+
+cp [mijsce] [~/dane]
+cp [miejsce] [.]  gdzie . znaczy biezacy katalog
+
+plik passwd - lista kont założonych na serwerze (kont niedomenowych)
+
+x - to nie chaslo
+
+id  pokazuje swoje id  grupe
+
+groupe
+
+shadow - plik z haslami
+
+chmod - zmiana uprawnień do pliku
+
+man - info
