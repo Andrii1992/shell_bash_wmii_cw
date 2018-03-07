@@ -37,3 +37,6 @@ w katalogu /etc (bez podkatalogów) znaleźć pliki które nie były zmieniane w
 
 Wyszukać w katalogu domowym wszystkie pliki z czasem modyfikacji póżniejszym niż do pliku  /etc/passwd
 
+
+man find
+
