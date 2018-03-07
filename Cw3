@@ -36,6 +36,7 @@ W katalogu /bin  wyszukać pliki typu link symboliczny , których nazwa zaczyna 
 w katalogu /etc (bez podkatalogów) znaleźć pliki które nie były zmieniane w ciągu ostatnich 30 dni (zmiana zawartości)
 
 Wyszukać w katalogu domowym wszystkie pliki z czasem modyfikacji póżniejszym niż do pliku  /etc/passwd
+find /bin -maxdepth 1 -type l or -type f -name r*
 
 
 man find
