@@ -1,0 +1,39 @@
+Tworzenie dołączeń
+polecenie: ln
+linki symboliczne
+
+linki twarde
+
+i-węzeł (inode)
+
+polecenie: stat nazwaPliku
+wyświetla status pliku
+
+find [ścieżka] [opcje] wyrażenie testujące
+
+w katalogu /etc i podkatalogach znaleźć pliki których nazwa zaczyna się od "passwd"
+find /etc -name passwd* 2>/dev/null
+
+w katalogu /etc (bez podkatalogów) znaleźć pliki których nazwa zaczyna się od "passwd"
+find /etc -maxdepth 1 -name passwd* 2>/dev/null
+
+w katalogu /etc (bez podkatalogów) znaleźć pliki które były zmieniane w ciągu ostatnich 30 dni (zmiana zawartości)
+find /etc -maxdepth 1 -mtime -31
+
+w katalogu /bin (bez podkatalogów) znaleźć pliki których rozmiar >4KB
+
+
+w katalogu /tmp (bez podkatalogów) znaleźć pliki których włascicielem jest magda
+
+
+w katalogu /tmp (bez podkatalogów) znaleźć pliki których włascicielem nie jest magda
+
+
+Wyszukać wszystkie podkatalogi katalogu domowego
+
+W katalogu /bin  wyszukać pliki typu link symboliczny , których nazwa zaczyna się na literę "r"
+
+w katalogu /etc (bez podkatalogów) znaleźć pliki które nie były zmieniane w ciągu ostatnich 30 dni (zmiana zawartości)
+
+Wyszukać w katalogu domowym wszystkie pliki z czasem modyfikacji póżniejszym niż do pliku  /etc/passwd
+
