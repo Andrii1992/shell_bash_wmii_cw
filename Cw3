@@ -40,3 +40,24 @@ Wyszukać w katalogu domowym wszystkie pliki z czasem modyfikacji póżniejszym 
 
 man find
 
+find /etc -name passd*   -zanlesc  
+
+2>/dev/null - przekerujemy bledy
+
+wklejamy prawym klawiszem !!!
+
+-maxdepth - nie chcemy przszykiwac podkatalogi
+
+find /etc -maxdepth 1 -name passwd* 2>/dev/null
+
+
+find /etc -maxdepth 1 -size 4k
+
+find /etc -user 14383 zanjsc pliki po useru
+
+! - negacja
+
+
+
+
+
