@@ -1,0 +1,184 @@
+Polecenie echo
+===============
+
+echo [OPCJE]... [NAPIS]...
+
+
+Polecenie echo wypisuje ciąg znaków NAPIS na standardowe wyjście (stdout) czyli na ekranie
+
+np.; echo witaj
+
+
+Zmienne powłoki  
+================
+Zmienne służą do przechowywania danych.
+Powłoka nie wymaga deklarowania typu zmiennej.
+W powłoce Bash zmienne traktowane sa jak napisy.
+
+1.
+Zmienne programowe (użytkownika)
+--------------------------------
+to zmienne definiowane przez użytkownika w skryptach powłoki.
+
+Definicja zmiennej programowej wygląda następująco:
+nazwaZmiennej=wartość  (uwaga! bez spacji przed i po znaku =)
+np.:  x=123	
+imie=magda
+
+usunięcie zmiennej: 
+unset nazwaZmiennej   
+
+Odwołanie do zmiennej:  ${nazwaZmiennej} np.:    
+echo ${imie}
+Uwaga! Nawiasy {} są opcjonalne, sprawdź kiedy są konieczne
+
+
+tworzenie  zmiennej tylko do odczytu:    
+readonly nazwaZmiennej=wartość  
+
+
+Interpretacja wyrażeń arytmetycznych:
+wykonywanie operacji całkowitoliczbowych na zmiennych
+=====================================================
+
+
+Sposób 1: 
+polecenie: let
+x=1;
+let "wyrażenie" np.: let "x=x+1"
+echo x=$x, wyświetla x=2   
+---------------
+Sposób 2: 
+$((wyrażenie))   np.: x=$((x*4))
+
+Podstawowe operacje:
++ * - / %(modulo) **(potęgowanie)
+
+polecenie read - podstawienie na zmienną wartości wpisanej ze standardowego wejścia
+
+read nazwaZmiennej
+read -p "Podaj nazwe pliku: " plik
+
+2.
+Zmienne Srodowiskowe shella
+==========================
+Zmienne środowiskowe używane są do przekazywania informacji powłoce oraz programom uruchamianym pod jej kontrolą. Informacje zapisane w zmiennych środowiskowych są wykorzystywane do określenia parametrów interakcji pomiędzy użytkownikiem, powłoką, systemem operacyjnym i programami. 
+Zgodnie z przyjętą konwencją, nazwy zmiennych środowiskowych składają się tylko z wielkich liter. 
+Wiele zmiennych środowiskowych definiowanych
+jest w globalnych plikach konfiguracyjnych (pliki konfiguracyjne opisane zostaną w dalszej części). 
+
+Takie zmienne można też definiować za pomocą plików konfigurujących sesję użytkownika. 
+
+
+Użytkownik ma dostęp do tych zmiennych, czyta je i może zmieniać.
+Aby zobaczyć ustawienia zmiennych lokalnych możemy wydać polecenie: 
+set
+env
+
+Sprawdź dokładnie znaczenie poniżej wymienionych zmiennych:
+
+HISTFILE 
+HISTSIZE 
+EDITOR 
+PATH 
+CDPATH 
+PS1 
+PS2 
+PWD 
+HOSTNAME 
+MAIL   
+
+3.
+Zmienne specjalne (systemowe)
+==============================
+Są definiowane przez system i w przeciwieństwie do innych zmiennych nie można zmieniać ich wartości. 
+Najczęściej zmienne te wykorzystywane są w skryptach do sterowania programem.
+Przykładowe zmienne specjalne to :
+$# - liczba parametrów przekazanych do programu
+$? - kod zakończenia polecenia lub programu wywołanego z programu powłoki
+ls -l /bin
+echo $?  	wynik 0
+ls -l /bin/aaaaa (błąd)
+echo $?		wynik 2
+cp /etc/passwd 
+echo $?	
+
+Kod powrotu 0 oznacza brak błędów!!!
+============================================
+
+$0 - nazwa uruchomionego programu 
+$1,$2 - kolejne parametry przekazane do programu
+$$ - numer procesu bieżącego shella
+$+ - rozwijane do "$1 $2 ..."
+$@ - rozwijane do "$1" "$2" ....
+
+
+================================
+Polecenie echo i znaki cytowania
+
+Cytowanie
+==========
+
+Do wyświetlenia tekstu lub wartości zmiennych na ekranie służy polecenie echo.
+
+Znaki cytowania wyłączaja interpretację znaków specjalnych
+
+echo katlog domowy to: ~ 
+echo nazwa hosta ${HOSTNAME}
+
+
+
+
+Powłoka Bash odróżnia i inaczej interpretuje trzy rodzaje znaków cytowania:
+=========================================================
+
+1.cudzysłów " " wszystko pomiedzy "i" jest brane doslownie
+  z wyjatkiem nastepujacych znakow, ktore zachowują swoje specjalne 
+  znaczenie:
+  $ podstawienie zmiennej
+  ` podstawienie polecenia (akcent)
+  " oznaczenie końca podwojnego cudzyslowu
+
+2.apostrof ' ' wszystko pomiedzy 'i' jest brane doslownie.
+  
+
+3.\ znak nastepujacy po \ jest brany doslownie
+(czasem chcemy znaków specjalnych użyć w zwykłym znaczeniu).
+  
+akcent ` ` (znak pod tyldą)
+umożliwia zacytowanie polecenia, bardzo przydatne jeśli chce się podstawić pod zmienną wynik jakiegoś polecenia.
+
+Przykład:
+
+lista=`ls -la $PWD`
+echo $lista                          
+
+Uwaga!! Alternatywny zapis, który ma takie samo działanie wygląda tak:  $(polecenie)
+
+lista=$(ls -la $PWD)
+
+
+np.: na zmienną "data" podstawić wynik polecenia "date"
+Uwaga, sprawdż najpierw jak dzoiała polecenie data
+
+data=`date`
+
+wypisać datę w formacie: dd-mm-rrrr
+date +%d-%m-%Y
+zdefiniować zmienną rok pamiętającą rok (z bieżącej daty)
+rok=`date +%Y`
+lub
+data=$(date +%Y)
+
+
+Sprawdź czy potrafisz:
+=====================
+zdefiniuj zmienne:
+na zmienną uczelnia podstaw wartośc UWM
+zmiennej liczba przypisz wartość 4
+wykonaj na tej zmiennej operacje matematyczne:
+dadaj 2, podziel przez 3, zwiększ o 1
+na zmienną miesiąc podstaw miesiąc z polecenia data
+usuń zmienną uczelnia
+Poleceniem echo wypisz tekst: moj kotalog domowy to: "ścieżka do katalogu domowego" ; dzisiejsza data: "data w formacie rr-mm-dd" 
+
