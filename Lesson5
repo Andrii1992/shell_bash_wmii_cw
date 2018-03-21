@@ -1,0 +1,166 @@
+Instukcje sterujące
+======================
+
+
+Instrukcja if
+-----------------
+if  warunek1;then
+   instrukcja1
+   ...
+   instrukcja2
+[elif warunek2; then
+   instrukcja3]
+.
+.
+[else
+   instrukcja4
+   .....]
+fi
+
+do podawania warunków służy polecenie:
+
+test wyrażenie
+     lub
+[ wyrażenie ]
+
+UWAGA: po nawiasie otwierającym i przed zamykającym musi być spacja.
+
+Ważniejsze wyrażenia:
+========================== 
+dotyczące plików:
+-----------------
+ -d plik - prawda, jeśli plik istnieje i jest katalogiem 
+ -e plik - prawda, jeśli plik istnieje 
+ -f plik - prawda, jeśli plik istnieje i jest zwykłym plikiem 
+ -l plik - prawda, jeśl  plik istnieje i jest dowiązaniem symbolicznym 
+ -r plik - prawda, jeśli plik istnieje i można go czytać 
+ -s plik - prawda, jeśli plik istnieje i ma rozmiar większy od zera 
+ -u plik - prawda, jeśli plik istnieje i ma ustawiony bit set-user-id 
+ -w plik - prawda, jeśli plik istnieje i można do niego pisać · -x plik - prawda, jeśli plik istnieje i można go wykonać 
+ plik1 -nt plik2 - prawda, jeśli plik1 jest nowszy (zgodnie z datą modyfikacji) niż plik2 
+ plik1 -ot plik2 - prawda, jeśli plik1 jest starszy niż plik2 
+ plik1 -ef plik2 - prawda, jeśli plik1 i plik2 mają te same numery i-węzła. 
+
+porównywanie napisów
+------------------------
+ -z ciąg - prawda, jeśli ciąg ma długość równą zero 
+ -n ciąg - prawda, jeśli ciąg ma długość większość od zera 
+ ciąg1 = ciąg2 - prawda, jeśli ciągi są jednakowe 
+ ciąg1 != ciąg2 - prawda, jeśli ciągi są różne 
+
+
+porównanie całkowitoliczbowe
+--------------------------------
+ argument1 -eq argument2 
+zamiast "="
+ argument1 -ne argument2 
+zamiast "!="
+ argument1 -lt argument2 
+zamiast "<"
+ argument1 -le argument2 
+zamiast "<="
+ argument1 -gt argument2 
+zamiast ">"
+ argument1 -ge argument2 
+zamiast ">="
+
+
+
+
+operatory logiczne
+-------------------
+! wyrażenie - (negacja) prawda, jeśli wyrażenie jest fałszywe 
+wyrażenie -a wyrażenie - prawda, jeśli oba wyrażenia są prawdziwe (operator logiczny AND) 
+wyrażenie -o wyrażenie - prawda, jeśli przynajmniej jedno z wyrażeń jest prawdziwe (operator logiczny OR) 
+
+
+Inną instrukcją warunkową jest struktura case ... in. Przykład:
+
+-----------------------------------------------------------
+case wartosc in
+   wzorzec1)instrukcja1
+       ;;
+   wzorzec2)instrukcja2
+       ;;
+   wzorzec3)instrukcja3
+       ;;
+   *)instrukcja4
+       ;;
+esac
+
+wzorce mogą używać metaznaków i znaku |
+Wykonanie instrukcja1, jeśli wartość jest zgodna ze wzorcem wzorzec1,
+Wykonanie instrukcja2, jeśli wartość jest zgodna ze wzorcem wzorzec2
+.......
+wartosc jest zazwyczaj zmienną powłoki
+
+
+ 
+
+Pisanie skryptów
+=================
+Skrypty
+=========
+Narzędzie: dowolny edytor tekstowy
+
+Pierwsza linijka w skrypcie definiuje z jakiej powłoki korzysta skrypt
+#!/bin/bash 
+
+polecenia umieszczamy w nowych liniach, lub stosujemy ; jako separator poleceń
+
+Uruchamianie skryptów
+======================
+1.
+Aby taki skrypt można było uruchomić, należy nadać mu atrybut wykonyawlności 'x'
+
+Tak przygotowany skrypt uruchamia się jak każdy inny program. 
+./skrypt
+
+wykonanie skryptu w podpowłoce
+
+2.
+Skrypt można też uruchomić bez nadawania mu atrybutu wykonywalności.
+
+sh nazwa_skryptu 
+
+wykonanie skryptu w podpowłoce
+
+3.
+. skrypt 
+
+wykonanie skryptu w bieżącej powloce
+
+Przykłady:
+=================
+
+zad. 1
+======
+Skrypt pyta o imię, wyświetla komunikat "Witaj podane imię"
+
+zad. 2
+======
+Napisać skrypt, który wczytuje nazwe pliku i sprawdza, czy istnieje plik zwykły  o podanej nazwie. Wyświetla stosowny komunikat.
+
+zad. 3
+======
+Napisać skrypt, który wczytuje nazwę katalogu i sprawdza, czy istnieje 
+katalog  o podanej nazwie
+TAK - kasuje katalog 
+NIE - tworzy katalog
+
+zad. 4
+=========
+Skrypt prosi o podanie hasła, sprawdza, czy zostało podane prawidłowe hasło 
+założenie prawidłowe hasło to "j23"). Wyświetla stosowny komunikat.
+
+zad. 5
+=========
+Napisać skrypt, który wczytuje nazwę katalogu, zakłada katalog o podanej nazwie. 
+Sprawdza, czy katalog został założony.
+
+======
+W katogu domowym znajdują sie skrypty uruchamiane przy logowaniu. 
+cat ~/.bash_profile
+cat ~/.bashrc
+
+
