@@ -1,0 +1,10 @@
+ find /tmp -type f -user magda
+ find /tmp -type f -user magda 2>/dev/null -exec '{}' ~/;
+
+
+
+ find /tmp -type f -user magda 2>/dev/null -exec cp -v '{}' ~/cw7 \; -
+
+
+
+ find /tmp -type f -size +1  2>/dev/null -exec chmod -v g+w '{}' \;
